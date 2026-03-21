@@ -1,10 +1,4 @@
-"""
-Minimax Algorithm with Alpha-Beta Pruning
-Implements the core AI decision-making for Tic-Tac-Toe.
-
-No external AI/ML libraries used — this is a from-scratch implementation
-of the Minimax search algorithm with optional Alpha-Beta pruning.
-"""
+# Minimax with Alpha-Beta Pruning — from-scratch AI for Tic-Tac-Toe
 
 # Stats tracker to measure algorithm performance
 stats = {
@@ -15,20 +9,14 @@ stats = {
 
 
 def reset_stats():
-    """Reset the performance counters."""
+    # Reset performance counters
     stats['nodes_explored'] = 0
     stats['pruned'] = 0
     stats['max_depth'] = 0
 
 
 def evaluate(board):
-    """
-    Evaluate the board from the AI's perspective (AI = 'O').
-    Returns:
-        +10 if AI wins
-        -10 if Human wins
-          0 if draw or game not over
-    """
+    # Score board from AI's perspective: +10 AI wins, -10 human wins, 0 otherwise
     winner = board.check_winner()
     if winner == 'O':
         return 10
@@ -39,20 +27,7 @@ def evaluate(board):
 
 
 def minimax(board, depth, is_maximizing, alpha=float('-inf'), beta=float('inf'), use_pruning=True):
-    """
-    Minimax with optional Alpha-Beta pruning.
-
-    Parameters:
-        board:          the current Board object
-        depth:          current depth in the game tree
-        is_maximizing:  True if it's the AI's turn (maximizer), False for human (minimizer)
-        alpha:          best score the maximizer can guarantee (for pruning)
-        beta:           best score the minimizer can guarantee (for pruning)
-        use_pruning:    set False to run pure Minimax without pruning (for comparison)
-
-    Returns:
-        The evaluated score of the board state.
-    """
+    # Recursive minimax search with optional alpha-beta pruning
     stats['nodes_explored'] += 1
     stats['max_depth'] = max(stats['max_depth'], depth)
 
@@ -104,12 +79,7 @@ def minimax(board, depth, is_maximizing, alpha=float('-inf'), beta=float('inf'),
 
 
 def find_best_move(board, use_pruning=True):
-    """
-    Determine the best move for the AI ('O') by running Minimax on all available moves.
-
-    Returns:
-        (best_position, stats_dict) — the optimal move index and performance stats.
-    """
+    # Find best move for AI by running minimax on all available moves
     reset_stats()
 
     best_score = float('-inf')

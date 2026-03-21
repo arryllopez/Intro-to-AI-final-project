@@ -1,11 +1,8 @@
-"""
-Tic-Tac-Toe Game Logic
-Handles board state, move validation, and win detection.
-"""
+# Tic-Tac-Toe game logic: board state, move validation, win detection
 
 
 class Board:
-    """Represents a 3x3 Tic-Tac-Toe board."""
+    # Represents a 3x3 Tic-Tac-Toe board
 
     def __init__(self):
         # Board is a flat list of 9 cells: None = empty, 'X' = human, 'O' = AI
@@ -13,14 +10,11 @@ class Board:
         self.current_player = 'X'  # X always goes first
 
     def get_available_moves(self):
-        """Return list of indices where a move can be made."""
+        # Return indices of empty cells
         return [i for i, cell in enumerate(self.cells) if cell is None]
 
     def make_move(self, position):
-        """
-        Place the current player's mark at the given position (0-8).
-        Returns True if the move was valid, False otherwise.
-        """
+        # Place current player's mark at position (0-8), return True if valid
         if position < 0 or position > 8:
             return False
         if self.cells[position] is not None:
@@ -32,15 +26,12 @@ class Board:
         return True
 
     def undo_move(self, position):
-        """Undo a move at the given position (used by Minimax to explore states)."""
+        # Undo a move (used by Minimax to explore states)
         self.cells[position] = None
         self.current_player = 'O' if self.current_player == 'X' else 'X'
 
     def check_winner(self):
-        """
-        Check if there is a winner.
-        Returns 'X', 'O', or None.
-        """
+        # Return 'X', 'O', or None
         # All possible winning lines: rows, columns, diagonals
         win_lines = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8],  # rows
@@ -58,15 +49,15 @@ class Board:
         return None
 
     def is_full(self):
-        """Check if the board has no empty cells."""
+        # Check if the board has no empty cells
         return all(cell is not None for cell in self.cells)
 
     def is_terminal(self):
-        """Check if the game is over (win or draw)."""
+        # Check if the game is over (win or draw)
         return self.check_winner() is not None or self.is_full()
 
     def display(self):
-        """Print the board to the terminal."""
+        # Print the board to the terminal
         symbols = [cell if cell else str(i) for i, cell in enumerate(self.cells)]
         print()
         for row in range(3):

@@ -1,9 +1,4 @@
-"""
-Tic-Tac-Toe: Human vs AI (Terminal Version)
-Run this to play against the Minimax AI in your terminal.
-
-Usage: python main.py
-"""
+# Tic-Tac-Toe: Human vs AI (Terminal Version)
 
 from game import Board
 from minimax import find_best_move
