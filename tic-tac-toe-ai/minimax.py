@@ -18,7 +18,7 @@ def reset_stats():
 def evaluate(board):
     # Score board from AI's perspective: +10 AI wins, -10 human wins, 0 otherwise
     winner = board.check_winner()
-    if winner == 'O':
+    if winner == 'O': # Ai is 0 
         return 10
     elif winner == 'X':
         return -10
